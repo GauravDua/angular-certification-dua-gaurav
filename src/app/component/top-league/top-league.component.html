@@ -3,15 +3,15 @@
 <table>
   <thead>
     <tr>
-      <td>logo</td>
+      <td>Logo</td>
       <td>Home</td>
       <td>Score</td>
       <td>Away</td>
-      <td>logo</td>
+      <td>Logo</td>
     </tr>
   </thead>
-  <ng-container *ngFor="let team of games_map | keyvalue">
-    <ng-container *ngIf="team.key == team_id">
+  <ng-container *ngFor="let team of legaueMap | keyvalue">
+    <ng-container *ngIf="team.key == teamID">
       <ng-container *ngFor="let fixture of team.value.response; index as i">
         <tbody>
           <tr *ngIf="i < 10">
@@ -39,4 +39,6 @@
   </ng-container>
 </table>
 
-<button class="alignCenter" [routerLink]="['/leagues', countryName]">Back</button>
+<button class="alignCenter" [routerLink]="['/leagues', countryName]">
+  Back
+</button>

@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-      <td>Sr. No</td>
-      <td>logo</td>
+      <td>Rank</td>
+      <td>Team Logo</td>
       <td>Names</td>
       <td>Games</td>
       <td>W</td>
@@ -14,7 +14,7 @@
       <td>Points</td>
     </tr>
   </thead>
-  <ng-container *ngFor="let standing of leagues_map | keyvalue">
+  <ng-container *ngFor="let standing of countryMap | keyvalue">
     <tbody *ngIf="standing.key == countryName">
       <tr *ngFor="let st of standing.value.response[0].league.standings[0]">
         <td>{{ st.rank }}</td>
@@ -25,9 +25,9 @@
           {{ st.team?.name }}
         </td>
         <td>{{ st.all?.played }}</td>
-        <td>{{ st.all?.win }}</td>
-        <td>{{ st.all?.lose }}</td>
-        <td>{{ st.all?.draw }}</td>
+        <td style="min-width: 30px">{{ st.all?.win }}</td>
+        <td style="min-width: 30px">{{ st.all?.lose }}</td>
+        <td style="min-width: 30px">{{ st.all?.draw }}</td>
         <td>{{ st.goalsDiff }}</td>
         <td>{{ st.points }}</td>
       </tr>

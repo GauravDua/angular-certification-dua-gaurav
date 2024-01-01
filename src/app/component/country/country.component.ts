@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiStandingResponse } from '../../models/standing.model';
+import { CountryResponse } from '../../models/country.model';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { DataService } from '../../services/data.service';
 export class CountryComponent implements OnInit {
   countryName: string = '';
   teams: string[] = [];
-  leagues_map: Map<string, ApiStandingResponse> = new Map();
+  countryMap: Map<string, CountryResponse> = new Map();
 
   constructor(
     private dataService: DataService,
@@ -19,14 +19,14 @@ export class CountryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('LeaguesComponent');
+    console.log('CountryComponent');
     this.route.params.subscribe((params: Params) => {
       this.countryName = params['name'];
 
       this.dataService.getLeagueByCountry(this.countryName);
 
-      this.leagues_map = this.dataService.getLeagueByCountryFromCache();
-      console.log('leageus_map', this.leagues_map);
+      this.countryMap = this.dataService.getLeagueByCountryFromCache();
+      console.log('countryMap', this.countryMap);
     });
 
     this.getTeamName();
@@ -39,8 +39,8 @@ export class CountryComponent implements OnInit {
 
   getTeamName() {
     console.log('getTeamName');
-    if (this.leagues_map.has(this.countryName)) {
-      const league = this.leagues_map.get(this.countryName)!;
+    if (this.countryMap.has(this.countryName)) {
+      const league = this.countryMap.get(this.countryName)!;
       this.teams.push(this.countryName);
     }
   }

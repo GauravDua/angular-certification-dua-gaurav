@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ApiFixtureResponse } from '../../models/fixture.model';
+import { TopLeagueResponse } from '../../models/top-league.model';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -9,8 +9,8 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./top-league.component.css'],
 })
 export class TopLeagueComponent implements OnInit {
-  team_id: string = '';
-  games_map: Map<string, ApiFixtureResponse> = new Map();
+  teamID: string = '';
+  legaueMap: Map<string, TopLeagueResponse> = new Map();
   countryName: string = '';
 
   constructor(
@@ -19,13 +19,13 @@ export class TopLeagueComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('TeamGamesComponent');
+    console.log('TopLeagueComponent');
     this.route.params.subscribe((params: Params) => {
-      this.team_id = params['teamID'];
+      this.teamID = params['teamID'];
       this.countryName = params['name'];
-      this.dataService.getTopLeague(this.team_id);
+      this.dataService.getTopLeague(this.teamID);
 
-      this.games_map = this.dataService.getTopLeagueFromCache();
+      this.legaueMap = this.dataService.getTopLeagueFromCache();
     });
   }
 }

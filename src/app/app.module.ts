@@ -7,12 +7,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { CountryComponent } from './component/country/country.component';
 import { TopLeagueComponent } from './component/top-league/top-league.component';
-
-const routes: Routes = [
-  { path: 'leagues/:name', component: CountryComponent },
-  { path: 'leagues/:name/:teamID', component: TopLeagueComponent },
-  { path: '**', redirectTo: '/leagues/england', pathMatch: 'full' },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +17,9 @@ const routes: Routes = [
     CountryComponent,
     TopLeagueComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
+  exports: [AppRoutingModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
